@@ -1,0 +1,142 @@
+/* 
+    #3A7B99
+    #70AFCE
+    #A5DEF1
+    #FFFFFF 
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,900;1,300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: #00112c;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.far {
+  margin-right: 4px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.btn {
+  padding: 12px 24px;
+  background-color: #70afce;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: 500;
+}
+
+section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/*
+
+    NAVBAR
+
+*/
+
+nav {
+  height: 72px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__link--list {
+  display: flex;
+  gap: 16px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.nav__wrapper--left,
+.nav__wrapper--right {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 16px;
+}
+
+.nav__img--wrapper {
+  width: 120px;
+}
+
+.nav__img {
+  width: 100%;
+}
+
+.nav__button {
+  color: #00112c;
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+}
+
+.nav__button:hover,
+.nav__button:hover .far {
+  color: #70afce;
+}
+
+.nav__link--anchor:hover {
+  color: #70afce;
+}
+
+/*
+
+    LANDING
+
+*/
+
+#landing {
+    height: 100vh;
+}
+
+.header {
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    width: 45%;
+}
+
+.header__description--title {
+    font-size: 48px;
+}
+
+.header__description--para {
+    font-size: 24px;
+}
+
+.header__description > .btn {
+    width: 100%;
+}
+
+.header__banner--img {
+    border-radius: 4px;
+}
