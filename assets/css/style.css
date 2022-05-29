@@ -42,10 +42,10 @@ button {
   font-weight: 500;
 }
 
-section {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+.row {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /*
@@ -54,7 +54,7 @@ section {
 
 */
 
-nav {
+.nav__wrapper {
   height: 72px;
   background-color: white;
   display: flex;
@@ -108,35 +108,77 @@ nav {
 */
 
 #landing {
-    height: 100vh;
+  height: 90vh;
 }
 
-.header {
-    margin-top: 24px;
-    display: flex;
-    justify-content: space-between;
+.header__wrapper {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .header__description {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 16px;
-    width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  width: 45%;
 }
 
 .header__description--title {
-    font-size: 48px;
+  font-size: 48px;
 }
 
 .header__description--para {
-    font-size: 24px;
+  font-size: 24px;
 }
 
 .header__description > .btn {
-    width: 100%;
+  width: 100%;
 }
 
 .header__banner--img {
-    border-radius: 4px;
+  border-radius: 4px;
+}
+
+.header__button {
+  display: flex;
+  flex-direction: row;
+}
+
+/*
+
+  GOALS
+
+*/
+
+.goals {
+  padding: 24px 0;
+  background-color: #f5f5f5;
+}
+
+.goals__wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+
+.goals__goal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.goals__icon {
+  font-size: 48px;
+  padding: 12px;
+}
+
+.goals__goal--title {
+  font-size: 20px;
+}
+
+.goal__goal--para {
+  font-size: 16px;
 }
