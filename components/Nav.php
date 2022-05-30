@@ -4,17 +4,17 @@
             <div class="nav__wrapper">
                 <div class="nav__wrapper--left">
                     <figure class="nav__img--wrapper">
-                        <a href="/"></a><img src="./assets/img/healthone-logo.png" class="nav__img" alt=""></a>
+                        <a href="index.php"><img src="./assets/img/healthone-logo.png" class="nav__img" alt=""></a>
                     </figure>
                     <ul class="nav__link--list">
                         <li class="nav__link">
-                            <a href="#aboutme" class="
+                            <a href="index.php" class="
                             nav__link--anchor 
                             link__hover-effect 
                             ">Home</a>
                         </li>
                         <li class="nav__link">
-                            <a href="#projects" class="
+                            <a href="apparaten.php" class="
                             nav__link--anchor 
                             link__hover-effect 
                             ">Apparaten</a>
@@ -28,8 +28,8 @@
                     </ul>
                 </div>
                 <div class="nav__wrapper--right">
-                    <button class="nav__button"><i class="far fa-user-circle"></i>Inloggen</button>
-                    <button class="btn">Registreren</button>
+                    <a href="login.php" class="nav__button"><i class="far fa-user-circle"></i>Inloggen</a>
+                    <a href="register.php" class="btn">Registreren</a>
                 </div>
             </div>
         </div>
