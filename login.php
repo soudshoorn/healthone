@@ -1,7 +1,7 @@
 <html>
     <head>
         <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="./assets/css/style.css?v=1">
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
     </head>
     <body>
         <section class="login__wrapper">

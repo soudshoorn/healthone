@@ -280,6 +280,9 @@ nav {
 footer {
   background-color: #00112c;
   padding: 12px 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .footer__copyright {
@@ -363,4 +366,58 @@ footer {
 
 .login__new a:hover {
   text-decoration: underline;
+}
+
+/*
+
+  CATEGORY
+
+*/
+
+.categories {
+  margin: 24px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.categories__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.category__description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.category {
+  width: 250px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
+  border-radius: 6px;
+}
+
+.category__image--img {
+  width: 100%;
+}
+
+/*
+
+  PRODUCTS
+
+*/
+
+.product {
+  
 }

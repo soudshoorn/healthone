@@ -14,13 +14,13 @@
                             ">Home</a>
                         </li>
                         <li class="nav__link">
-                            <a href="apparaten.php" class="
+                            <a href="categories.php" class="
                             nav__link--anchor 
                             link__hover-effect 
                             ">Apparaten</a>
                         </li>
                         <li class="nav__link">
-                            <a href="#contact" class="
+                            <a href="contact.php" class="
                             nav__link--anchor 
                             link__hover-effect 
                             ">Contact</a>

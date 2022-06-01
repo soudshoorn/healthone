@@ -4,24 +4,21 @@
         <link rel="stylesheet" type="text/css" href="./css/style.css">
     </head>
     <body>
-            <?php
-                include_once('./components/Nav.php');
+        <?php
+            include_once('./components/Nav.php');
+            include_once('./dbConnection.php');
 
-                include_once('./components/Nav.php');
-                include_once('./dbConnection.php');
-    
-                $category = $db->prepare("SELECT * FROM products WHERE category_id = :id");
-                $category->bindParam("id", $_GET['id']);
-                $category->execute();
-    
-                $result = $category->fetchAll(PDO::FETCH_ASSOC);
-    
-            ?>
+            $category = $db->prepare("SELECT * FROM categories");
+            $category->execute();
+
+            $result = $category->fetchAll(PDO::FETCH_ASSOC);
+
+        ?>
 
         <div class="categories">
             <div class="container">
                 <div class="row">
-                    <h3 class="categories__title">Apparaten</h3>
+                    <h3 class="categories__title">Categorieën</h3>
                     <div class="categories__wrapper">
                         <?php 
                             foreach($result as &$data) {
@@ -42,10 +39,9 @@
             </div>
         </div>
 
+        <?php
 
-
-            <?php 
-                include_once('./components/Footer.php')
-            ?>
+            include_once('./components/Footer.php');
+        ?>
     </body>
 </html>
