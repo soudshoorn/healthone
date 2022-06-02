@@ -9,12 +9,13 @@
             include_once('./components/Nav.php');
 
             if (isset($_POST['submit'])) {
-                $name = filter_input(INPUT_GET, $_POST['name'], FILTER_SANITIZE_STRING);
-                $email = filter_input(INPUT_GET, $_POST['email'], FILTER_SANITIZE_EMAIL);
-                $password = filter_input(INPUT_GET, $_POST['password'], FILTER_SANITIZE_STRING);
-                $passwordrepeat = filter_input(INPUT_GET, $_POST['passwordrepeat'], FILTER_SANITIZE_STRING);
-
-                // if ($password == $passwordrepeat) {
+                $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
+                $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
+                $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
+                $passwordrepeat = filter_input(INPUT_POST, "passwordrepeat", FILTER_SANITIZE_STRING);
+                                
+                if ($password == $passwordrepeat) {
+                    try{
                     $query = $db->prepare("INSERT INTO users(name, email, password) VALUES(:name, :email, :password)");
 
                     $query->bindParam("name", $name);
@@ -23,12 +24,16 @@
 
                     if($query->execute()) {
                         header("Location: ./index.php");
-                    }// } else {
-                    //     echo "<div class='row alert alert-error'>ERROR: Er is een fout opgetreden, probeer het later opnieuw.</div>";
-                    // }
-                // } else {
-                //     echo "<div class='row alert alert-error'>ERROR: Wachtwoorden komen niet overeen.</div>";
-                // }
+                    } else {
+                        echo "<div class='row alert alert-error'>ERROR: Er is een fout opgetreden, probeer het later opnieuw.</div>";
+                    }
+
+                    }catch(PDOException $e){
+                        echo "error! " . $e->getMessage();
+                    }
+                } else {
+                    echo "<div class='row alert alert-error'>ERROR: Wachtwoorden komen niet overeen.</div>";
+                }
             }
         ?>
             <section class="register">
