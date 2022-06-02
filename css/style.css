@@ -41,6 +41,7 @@ button {
   color: white;
   font-weight: 500;
   transition: all 300ms ease;
+  cursor: pointer;
 }
 
 .btn:hover {
@@ -297,6 +298,79 @@ footer {
 
 /*
 
+  REGISTER
+
+*/
+
+.register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.register__title {
+  font-size: 32px;
+  letter-spacing: 1px;
+}
+
+.register__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.register__form {
+  width: 450px;
+  height: 600px;
+}
+
+.register__form form {
+  padding: 12px 36px;
+  display: flex;
+  flex-direction: column;
+}
+
+.register__field {
+  font-size: 16px;
+  padding: 4px 8px;
+  border: none;
+  border-bottom: #d5d5d5 1px solid;
+  outline: none;
+}
+
+.register__title {
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #3A7B99;
+}
+
+.register__buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12px 0;
+}
+
+.register__buttons--forgot {
+  transition: all 300ms ease;
+}
+
+.register__buttons--forgot:hover {
+  color: #3A7B99;
+}
+
+.register__new {
+  text-align: center;
+}
+
+.register__new a:hover {
+  text-decoration: underline;
+}
+
+/*
+
   LOGIN
 
 */
@@ -418,6 +492,75 @@ footer {
 
 */
 
-.product {
-  
+
+/*
+
+  ALERTS
+
+*/
+
+.alert {
+  margin: 24px auto;
+  padding: 12 24px;
+  border-radius: 4px;
 }
+
+.alert-success {
+  background-color: #c9ffe5;
+  border: 1px solid #09c97f;
+  color: #09c97f;
+
+}
+
+.alert-error {
+  background-color: #ffdbdb;
+  border: 1px solid #f95668;
+  color: #f95668;
+}
+
+/*
+
+  MANAGE PRODUCTS
+
+*/
+
+.addproduct {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.addproduct form {
+  display: flex;
+  flex-direction: column;
+}
+
+.addproduct input, select, textarea {
+  border-radius: 8px;
+  padding: 4px;
+  border: 1px solid #242424;
+  margin-bottom: 4px;
+}
+
+.addproduct .btn {
+  border: none;
+  cursor: pointer;
+}
+
+.manageproducts {
+  margin: 24px 0;
+}
+
+.manageproducts__table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.manageproducts__table td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+
