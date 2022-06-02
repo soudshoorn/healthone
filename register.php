@@ -5,7 +5,6 @@
     </head>
     <body>
         <?php
-        session_start();
             include_once('./dbConnection.php');
             include_once('./components/Nav.php');
 
@@ -15,7 +14,7 @@
                 $password = filter_input(INPUT_GET, $_POST['password'], FILTER_SANITIZE_STRING);
                 $passwordrepeat = filter_input(INPUT_GET, $_POST['passwordrepeat'], FILTER_SANITIZE_STRING);
 
-                if ($password == $passwordrepeat) {
+                // if ($password == $passwordrepeat) {
                     $query = $db->prepare("INSERT INTO users(name, email, password) VALUES(:name, :email, :password)");
 
                     $query->bindParam("name", $name);
@@ -24,12 +23,12 @@
 
                     if($query->execute()) {
                         header("Location: ./index.php");
-                    } else {
-                        echo "<div class='row alert alert-error'>ERROR: Er is een fout opgetreden, probeer het later opnieuw.</div>";
-                    }
-                } else {
-                    echo "<div class='row alert alert-error'>ERROR: Wachtwoorden komen niet overeen.</div>";
-                }
+                    }// } else {
+                    //     echo "<div class='row alert alert-error'>ERROR: Er is een fout opgetreden, probeer het later opnieuw.</div>";
+                    // }
+                // } else {
+                //     echo "<div class='row alert alert-error'>ERROR: Wachtwoorden komen niet overeen.</div>";
+                // }
             }
         ?>
             <section class="register">
