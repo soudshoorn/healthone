@@ -1,12 +1,12 @@
 <html>
     <head>
         <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="./css/style.css">
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
     </head>
     <body>
             <?php
-                include_once('./dbConnection.php');   
-                include_once('./components/Nav.php');
+                include_once('../dbConnection.php');   
+                include_once('../components/Nav.php');
 
                 if (isset($_POST['submit'])) {
 
@@ -85,7 +85,7 @@
                                     <td>" . $data['img'] . "</td>
                                     <td>" . $data['description'] . "</td>
                                     <td>" . $data['category_id'] . "</td>
-                                    <td><a href='manageproduct.php?deleteproduct=" . $data['id'] . "' class='btn'><i class='fas fa-times'></i></a></td>
+                                    <td><a href='/healthone/manageproduct.php?deleteproduct=" . $data['id'] . "' class='btn'><i class='fas fa-times'></i></a></td>
                                 </tr>
                                 ";
                             }
@@ -133,7 +133,7 @@
             </section>
 
             <?php 
-                include_once('./components/Footer.php')
+                include_once('../components/Footer.php')
             ?>
     </body>
 </html>

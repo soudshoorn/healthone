@@ -1,12 +1,12 @@
 <html>
     <head>
         <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="./css/style.css">
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
     </head>
     <body>
         <?php
-            include_once('./dbConnection.php');
-            include_once('./components/Nav.php');
+            include_once('../dbConnection.php');
+            include_once('../components/Nav.php');
 
             if (isset($_POST['submit'])) {
                 $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
@@ -23,7 +23,7 @@
                     $query->bindParam("password", $password);
 
                     if($query->execute()) {
-                        header("Location: ./index.php");
+                        header("Location: /healthone/login.php");
                     } else {
                         echo "<div class='row alert alert-error'>ERROR: Er is een fout opgetreden, probeer het later opnieuw.</div>";
                     }
@@ -65,7 +65,7 @@
                 </div>
             </section>
         <?php 
-            include_once('./components/Footer.php')
+            include_once('../components/Footer.php')
         ?>
     </body>
 </html>
