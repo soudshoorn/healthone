@@ -25,6 +25,32 @@ a {
   text-decoration: none;
 }
 
+.delete__btn, .edit__btn {
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit__btn--wrapper {
+  background-color: #ff9633;
+}
+
+.delete__btn--wrapper {
+  background-color: #ff5d5d;
+}
+
+.delete__btn .fas, .edit__btn .fas {
+  color: white;
+}
+
+.manageproduct__description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 350px;
+}
+
 .far, .fas {
   margin-right: 4px;
 }
@@ -286,14 +312,29 @@ nav {
 
 /*
 
-  FOOTER
+  VERIFY
 
 */
 
-.stickyfooter footer {
-  position: fixed;
-  bottom: 0;
+.verify {
+  position: absolute; 
+  top: 30;
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  width: 350px; /* Need a specific value to work */
+  background-color: #f5f5f5;
+  padding: 24px;
+  border: 1px solid #242424;
+  border-radius: 4px;
 }
+
+/*
+
+  FOOTER
+
+*/
 
 footer {
   background-color: #00112c;

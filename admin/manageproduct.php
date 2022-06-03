@@ -70,6 +70,8 @@
                                 <th>Image</th>
                                 <th>Beschrijving</th>
                                 <th>Categorie</th>
+                                <th></th>
+                                <th></th>
                             </tr>
                         <?php 
                             $category = $db->prepare("SELECT * FROM products");
@@ -83,22 +85,39 @@
                                     <td>" . $data['id'] . "</td>
                                     <td>" . $data['name'] . "</td>
                                     <td>" . $data['img'] . "</td>
-                                    <td>" . $data['description'] . "</td>
+                                    <td class='manageproduct__description'>" . $data['description'] . "</td>
                                     <td>" . $data['category_id'] . "</td>
-                                    <td><a href='/healthone/admin/manageproduct.php?deleteproduct=" . $data['id'] . "' class='btn'><i class='fas fa-times'></i></a></td>
+                                    <td class='edit__btn--wrapper'><a href='/healthone/admin/functionalities/editproduct.php?id=" . $data['id'] . "' class='edit__btn'><i class='fas fa-pencil-alt'></i></i></a></td>
+                                    <td class='delete__btn--wrapper'><a href='/healthone/admin/manageproduct.php?verify_delete=".$data['id']."' class='delete__btn'><i class='fas fa-times'></i></a></td>
                                 </tr>
                                 ";
                             }
 
-                            if(isset($_GET['deleteproduct'])) {
-                                $delete = "DELETE FROM products WHERE id=" . $_GET['deleteproduct'] ."";
 
-                                $db->exec($delete);
-                                echo "<div class='row alert alert-success'>Product succesvol verwijderd.</div>";
+                            if(isset($_GET['verify_delete'])) {
+                                $id = $_GET['verify_delete'];
+                                echo "
+                                <div class='verify'>
+                                <div class='container'>
+                                    <div class='row'>
+                                        <form method='POST' class='verify__form'>
+                                            <h3>Weet je zeker dat je dit product wilt verwijderen?</h3>
+                            
+                                            <a href='/healthone/admin/manageproduct.php' class='btn verify__cancel'>Annuleren</a>
+                                            <a href='/healthone/admin/deleteproduct.php?id=".$id."' class='btn verify__delete'>Verwijderen</a>
+                                        </form>
+                                    </div>
+                                </div>
+                                </div>
+                                ";
                             }
 
-                            if(isset($_GET['deletesuccessful'])) {
-                                echo "<div class='row alert alert-success'>Het product is succesvol verwijderd.</div>";
+                            if(isset($_POST['delete'])) {
+                                header("Location: /healthone/admin/functionalities/deleteproduct.php?id=".$_GET['verify_delete']."");
+                            }
+
+                            if(isset($_POST['cancel'])) {
+                                header("Location: ./manageproduct.php");
                             }
                         ?>
                         </table>
@@ -124,14 +143,10 @@
                             <label>Beschrijving</label>
                             <textarea name="description" required></textarea>
         
-                            <input class="btn" type="submit" name="submit">
+                            <input class="btn" type="submit" name="submit" value="Verzenden">
                         </form>
                     </div>
                 </div>
             </section>
-
-            <?php 
-                include_once('../components/Footer.php')
-            ?>
     </body>
 </html>

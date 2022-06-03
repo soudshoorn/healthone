@@ -154,10 +154,5 @@
                 </div>
             </div>
         </section>
-
-
-            <?php 
-                include_once('../components/Footer.php')
-            ?>
     </body>
 </html>

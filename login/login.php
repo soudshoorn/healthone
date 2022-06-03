@@ -60,10 +60,5 @@
                     </div>
                 </div>
             </section>
-        <div class="stickyfooter">
-            <?php 
-                include_once('../components/Footer.php')
-            ?>
-        </div>
     </body>
 </html>
