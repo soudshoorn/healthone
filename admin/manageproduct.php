@@ -27,7 +27,7 @@
                         if ($fileError === 0) {
                             if ($fileSize < 500000) {
                                 $fileNameNew = uniqid('', true).".".$fileActualExt;
-                                $fileDestination = 'assets/img/'.$fileNameNew;
+                                $fileDestination = '../assets/img/'.$fileNameNew;
                                 move_uploaded_file($fileTmp, $fileDestination);
 
                                 $category = filter_input(INPUT_POST, "category", FILTER_SANITIZE_STRING);
@@ -85,7 +85,7 @@
                                     <td>" . $data['img'] . "</td>
                                     <td>" . $data['description'] . "</td>
                                     <td>" . $data['category_id'] . "</td>
-                                    <td><a href='/healthone/manageproduct.php?deleteproduct=" . $data['id'] . "' class='btn'><i class='fas fa-times'></i></a></td>
+                                    <td><a href='/healthone/admin/manageproduct.php?deleteproduct=" . $data['id'] . "' class='btn'><i class='fas fa-times'></i></a></td>
                                 </tr>
                                 ";
                             }
@@ -94,9 +94,7 @@
                                 $delete = "DELETE FROM products WHERE id=" . $_GET['deleteproduct'] ."";
 
                                 $db->exec($delete);
-                                echo "Record deleted successfully";
-                                header("Location: manageproduct.php?deletesuccessful=true");
-
+                                echo "<div class='row alert alert-success'>Product succesvol verwijderd.</div>";
                             }
 
                             if(isset($_GET['deletesuccessful'])) {

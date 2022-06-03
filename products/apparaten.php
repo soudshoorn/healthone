@@ -33,7 +33,7 @@
                                     </figure>
                                     <div class='category__description'>
                                         <h3 class='category__description--title'>" . $data['name'] . "</h3>
-                                        <a href='apparaten.php?id=" . $data['id'] . "'><button class='btn'>Meer Details</button></a>
+                                        <a href='product.php?id=" . $data['id'] . "'><button class='btn'>Meer Details</button></a>
                                     </div>
                                 </div>";
                             }
@@ -44,9 +44,10 @@
         </div>
 
 
-
+        <div class="stickyfooter">
             <?php 
                 include_once('../components/Footer.php')
             ?>
+        </div>
     </body>
 </html>

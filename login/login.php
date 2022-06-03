@@ -19,22 +19,21 @@
                     $result = $login->fetchAll(PDO::FETCH_ASSOC);
 
                     foreach ($result as &$data) {
-                        echo " " . $data['password'] . " ";
-
                         if($password == $data['password']) {
 
                             $_SESSION['user'] = $data['id'];
+                            $_SESSION['username'] = $data['name'];
 
                             if ($data['role'] == 'admin') {
                                 $_SESSION['admin'] = true;
-                                header("Location: /healthone/admin/dashboard.php");
-                            } else {
+                                header("Location: /healthone/admin/manageproduct.php");
+                            } else if ($data['role'] == 'guest') {
                                 $_SESSION['admin'] = false;
                             }
 
                             header("Location: /healthone/index.php");
                         } else {
-                            echo "<div class='row alert alert-error'>ERROR: Onjuist wachtwoord of emailadress.</div>";
+                            echo "<div class='row alert alert-error'>ERROR: Onjuist wachtwoord of email adres.</div>";
                         }
                     }
                 }
@@ -61,8 +60,10 @@
                     </div>
                 </div>
             </section>
+        <div class="stickyfooter">
             <?php 
                 include_once('../components/Footer.php')
             ?>
+        </div>
     </body>
 </html>

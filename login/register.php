@@ -23,7 +23,7 @@
                     $query->bindParam("password", $password);
 
                     if($query->execute()) {
-                        header("Location: /healthone/login.php");
+                        header("Location: /healthone/login/login.php");
                     } else {
                         echo "<div class='row alert alert-error'>ERROR: Er is een fout opgetreden, probeer het later opnieuw.</div>";
                     }
@@ -58,14 +58,17 @@
                                     <a href="" class="register__buttons--forgot">Wachtwoord vergeten?</a>
                                     <input type="submit" name="submit" class="btn" value="Registreren"></input>
                                 </div>
-                                <small class="register__new"><a href="login.php">Heb je al een account? Klik hier!</a></small>
+                                <small class="register__new"><a href="/healthone/products/login.php">Heb je al een account? Klik hier!</a></small>
                             </form>
                         </div>
                     </div>
                 </div>
             </section>
-        <?php 
-            include_once('../components/Footer.php')
-        ?>
+
+        <div class="stickyfooter">
+            <?php 
+                include_once('../components/Footer.php')
+            ?>
+        </div>
     </body>
 </html>

@@ -25,7 +25,7 @@ a {
   text-decoration: none;
 }
 
-.far {
+.far, .fas {
   margin-right: 4px;
 }
 
@@ -116,7 +116,8 @@ nav {
 }
 
 .nav__button:hover,
-.nav__button:hover .far {
+.nav__button:hover .far,
+.nav__button:hover .fas {
   color: #70afce;
 }
 
@@ -289,11 +290,14 @@ nav {
 
 */
 
+.stickyfooter footer {
+  position: fixed;
+  bottom: 0;
+}
+
 footer {
   background-color: #00112c;
   padding: 12px 0;
-  position: absolute;
-  bottom: 0;
   width: 100%;
 }
 
@@ -499,9 +503,36 @@ footer {
 
 /*
 
-  PRODUCTS
+  PRODUCT
 
 */
+
+.product__wrapper {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product__output {
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  gap: 32px;
+  display: flex;
+  height: 600px;
+  width: 100%;
+  border: 2px solid #d5d5d5;
+  border-radius: 4px;
+}
+
+.product__image--img {
+  width: 100%;
+}
+
+.product__description {
+  width: 50%;
+}
 
 
 /*
@@ -562,16 +593,60 @@ footer {
   margin: 24px 0;
 }
 
-.manageproducts__table {
+table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
 
-.manageproducts__table td, th {
+table td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
 }
 
+/*
 
+  REVIEWS
+
+*/
+
+.review__create {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.review__create form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.description__submit {
+  display: flex;
+  flex-direction: column;
+}
+
+.name__review {
+  cursor: not-allowed;
+}
+
+.description__submit textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.reviews__wrapper {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+.reviews__top {
+  background-color: #3A7B99;
+}
+
+.reviews__top th {
+  color: white;
+}

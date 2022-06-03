@@ -40,9 +40,11 @@
             </div>
         </div>
 
-        <?php
 
-            include_once('../components/Footer.php');
-        ?>
+        <div class="stickyfooter">
+            <?php 
+                include_once('../components/Footer.php')
+            ?>
+        </div>
     </body>
 </html>

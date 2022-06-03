@@ -30,16 +30,16 @@
                     </ul>
                 </div>
                 <?php 
-                    if(isset($_SESSION['user'])) {
+                    if(($_SESSION['admin'] = true) && (isset($_SESSION['user']))) {
                         echo "
                         <div class='nav__wrapper--right'>
-                            <a href='/healthone/login/logout.php' class='nav__button'><i class='far fa-user-circle'></i>Uitloggen</a>
+                            <a href='/healthone/login/logout.php' class='nav__button'><i class='fas fa-sign-out-alt'></i></i>Uitloggen</a>
+                            <a href='/healthone/admin/manageproduct.php' class='nav__button'>Admin</a>
                         </div>";
-                    } else if((isset($_SESSION['admin'])) && (isset($_SESSION['user']))) { 
+                    } else if(isset($_SESSION['user'])) { 
                         echo "
                         <div class='nav__wrapper--right'>
-                            <a href='/healthone/login/logout.php' class='nav__button'><i class='far fa-user-circle'></i>Uitloggen</a>
-                            <a href='/healthone/login/login.php' class='nav__button'>Admin</a>
+                            <a href='/healthone/login/logout.php' class='nav__button'><i class='fas fa-sign-out-alt'></i></i>Uitloggen</a>
                         </div>";
                     } else {
                         echo "
