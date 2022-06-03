@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Gegenereerd op: 03 jun 2022 om 19:43
--- Serverversie: 5.7.34
--- PHP-versie: 8.0.8
+-- Host: 127.0.0.1
+-- Gegenereerd op: 03 jun 2022 om 15:22
+-- Serverversie: 10.4.22-MariaDB
+-- PHP-versie: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -60,7 +60,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `img`, `description`, `category_id`) VALUES
-(29, 'Crosstrainer RX50', '629a62d510cf81.08424489.jpg', 'Ja dit is een crosstrainertje die gewoon toppie is.', 1);
+(21, 'Loopband 56RX', '6298a92ceacc70.33156900.jpg', 'Met de 56RX Loopband heeft Bowflex een hoogwaardige loopband ontwikkeld die zorgt voor een natuurlijke hardloopervaring in je eigen huis. Zowel de brede loopmat (152x56cm) als de buitengewone helling, dragen bij aan een realistische loopervaring. De helli', 2),
+(27, 'Crosstrainer EX60', '629a0a45bddac4.79070594.jpg', 'De cardiostrong crosstrainer EX60 Touch staat voor stabiliteit, uitstekende bewegingskwaliteit, een stijlvol design en zeer comfortabel. Dankzij het compacte ontwerp is de EX60 erg ruimtebesparend en kan daarom vrijwel in elke woonkamer terecht. Met zijn twee vliegwielen voor en achter zet de crosstrainer nieuwe maatstaven in zijn klasse op het gebied van bewegingskwaliteit en biedt hij een optimale trainingservaring, zelfs in de kleinste ruimtes. Het elegante zwarte frame en de slijtvaste poedercoating geven de EX60 Touch een stijlvol uiterlijk.', 1);
 
 -- --------------------------------------------------------
 
@@ -147,13 +148,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT voor een tabel `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT voor een tabel `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT voor een tabel `users`
