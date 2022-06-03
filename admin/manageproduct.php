@@ -111,14 +111,6 @@
                                 </div>
                                 ";
                             }
-
-                            if(isset($_POST['delete'])) {
-                                header("Location: /healthone/admin/functionalities/deleteproduct.php?id=".$_GET['verify_delete']."");
-                            }
-
-                            if(isset($_POST['cancel'])) {
-                                header("Location: ./manageproduct.php");
-                            }
                         ?>
                         </table>
                     </div>
