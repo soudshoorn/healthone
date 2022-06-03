@@ -1,4 +1,5 @@
 <?php 
+    session_start();
     include_once('../dbConnection.php');
 
     try {
@@ -19,11 +20,11 @@
         $delete->bindParam('id', $id);
 
         if($delete->execute()){
-
-            // error op beheer.php 
-            header("Location: ./manageproduct.php");
-        
+            header("Location: ./manageproduct.php");  
+            $_SESSION['success'] = "Het product is succesvol verwijderd.";      
         } else {
+            header("Location: ./manageproduct.php");        
+            $_SESSION['error'] = "Iets is fout gegaan bij het verwijderen. Probeer het later opnieuw.";
         }
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();

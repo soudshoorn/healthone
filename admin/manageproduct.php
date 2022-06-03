@@ -8,6 +8,16 @@
                 include_once('../dbConnection.php');   
                 include_once('../components/Nav.php');
 
+                if(isset($_SESSION['success'])) {
+                    echo "<div class='row alert alert-success'>".$_SESSION['success']."</div>";
+                    unset($_SESSION['success']);
+                }
+
+                if(isset($_SESSION['error'])) {
+                    echo "<div class='row alert alert-error'>ERROR: ".$_SESSION['error']."</div>";
+                    unset($_SESSION['error']);
+                }
+
                 if (isset($_POST['submit'])) {
 
                     $file = $_FILES['file'];
@@ -43,19 +53,19 @@
                                 $query->bindParam("description", $description);
                                 $query->bindParam("category_id", $category);
                                 if ($query->execute()) {
-                                    echo "<div class='row alert alert-success'>Het nieuwe product is toegevoegd.</div>";
+                                    $_SESSION['success'] = "Het nieuwe product is toegevoegd.";
                                 } else {
-                                    echo "<div class='row alert alert-error'>ERROR: Er is iets fout gegaan, probeer later opnieuw.</div>";
+                                    $_SESSION['error'] = "Er is iets fout gegaan, probeer later opnieuw.";
                                 }
                                 echo "<br />";
                             } else {
-                                echo "<div class='row alert alert-error'>ERROR: Dit bestand is te groot.</div>";
+                                $_SESSION['error'] = "Dit bestand is te groot.";
                             }
                         } else {
-                            echo "<div class='row alert alert-error'>ERROR: Er is iets fout gegaan, probeer later opnieuw.</div>";
+                            $_SESSION['error'] = "Er is iets fout gegaan, probeer later opnieuw.";
                         }
                     } else {
-                        echo "<div class='row alert alert-error'>ERROR: Verboden bestandstype. Alleen jpg, jpeg & png's zijn toegestaan.</div>";
+                        $_SESSION['error'] = "Verboden bestandstype. Alleen jpg, jpeg & png's zijn toegestaan.";
                     }
                 }
             ?>

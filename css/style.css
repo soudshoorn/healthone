@@ -567,6 +567,10 @@ footer {
   border-radius: 4px;
 }
 
+.product__image {
+  width: 400px;
+}
+
 .product__image--img {
   width: 100%;
 }

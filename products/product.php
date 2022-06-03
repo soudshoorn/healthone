@@ -9,6 +9,16 @@
 
                 include_once('../components/Nav.php');
                 include_once('../dbConnection.php');
+
+                if(isset($_SESSION['success'])) {
+                    echo "<div class='row alert alert-success'>".$_SESSION['success']."</div>";
+                    unset($_SESSION['success']);
+                }
+
+                if(isset($_SESSION['error'])) {
+                    echo "<div class='row alert alert-error'>ERROR: ".$_SESSION['error']."</div>";
+                    unset($_SESSION['error']);
+                }
     
                 $product = $db->prepare("SELECT * FROM products WHERE id = :id");
                 $product->bindParam("id", $_GET['id']);
@@ -30,12 +40,10 @@
                         $review->bindParam("description", $description);
                         $review->bindParam("product_id", $product_id);
 
-                        echo $name, $stars, $description, $product_id;
-    
                         if ($review->execute()) {
-                            echo "<div class='row alert alert-success'>Het nieuwe product is toegevoegd.</div>";
+                            $_SESSION['success'] = "Je review is succesvol geplaatst.";
                         } else {
-                            echo "<div class='row alert alert-error'>ERROR: Er is iets fout gegaan, probeer later opnieuw.</div>";
+                            $_SESSION['error'] = "Er is iets fout gegaan, probeer later opnieuw.";
                         }
                     } catch (PDOException $e) {
                         echo "PDO Error: " . $e->getMessage();
@@ -49,8 +57,7 @@
                     $delete = "DELETE FROM reviews WHERE id=" . $_GET['delete_review'] ."";
 
                     $db->exec($delete);
-                    echo "<div class='row alert alert-success'>Review succesvol verwijderd.</div>";
-
+                    $_SESSION['success'] = "Review succesvol verwijderd.";                        
                 }
     
             ?>

@@ -8,6 +8,16 @@
                 include_once('../dbConnection.php');
                 include_once('../components/Nav.php');
 
+                if(isset($_SESSION['success'])) {
+                    echo "<div class='row alert alert-success'>".$_SESSION['success']."</div>";
+                    unset($_SESSION['success']);
+                }
+
+                if(isset($_SESSION['error'])) {
+                    echo "<div class='row alert alert-error'>ERROR: ".$_SESSION['error']."</div>";
+                    unset($_SESSION['error']);
+                }
+
                 if(isset($_POST['submit'])) {
                     $email = $_POST['email'];
                     $password = $_POST['password'];
@@ -33,7 +43,7 @@
 
                             header("Location: /healthone/index.php");
                         } else {
-                            echo "<div class='row alert alert-error'>ERROR: Onjuist wachtwoord of email adres.</div>";
+                            $_SESSION['error'] = "Onjuist wachtwoord of email adres.";
                         }
                     }
                 }

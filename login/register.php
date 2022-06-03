@@ -8,6 +8,16 @@
             include_once('../dbConnection.php');
             include_once('../components/Nav.php');
 
+            if(isset($_SESSION['success'])) {
+                echo "<div class='row alert alert-success'>".$_SESSION['success']."</div>";
+                unset($_SESSION['success']);
+            }
+
+            if(isset($_SESSION['error'])) {
+                echo "<div class='row alert alert-error'>ERROR: ".$_SESSION['error']."</div>";
+                unset($_SESSION['error']);
+            }
+
             if (isset($_POST['submit'])) {
                 $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
                 $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
@@ -25,14 +35,14 @@
                     if($query->execute()) {
                         header("Location: /healthone/login/login.php");
                     } else {
-                        echo "<div class='row alert alert-error'>ERROR: Er is een fout opgetreden, probeer het later opnieuw.</div>";
+                        $_SESSION['error'] = "Er is een fout opgetreden, probeer het later opnieuw.";                        
                     }
 
                     }catch(PDOException $e){
                         echo "error! " . $e->getMessage();
                     }
                 } else {
-                    echo "<div class='row alert alert-error'>ERROR: Wachtwoorden komen niet overeen.</div>";
+                    $_SESSION['error'] = "Wachtwoorden komen niet overeen.";                        
                 }
             }
         ?>
