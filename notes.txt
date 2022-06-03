@@ -1,0 +1,7 @@
+* TODO *
+
+- Contact Pagina
+- Gebruikers Pagina
+- Profiel Pagina
+- Product Edit
+- Styling fixen bij forms (reviews, admin)

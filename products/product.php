@@ -88,6 +88,7 @@
                                 <th>Naam</th>
                                 <th>Sterren</th>
                                 <th>Mening</th>
+                                <th></th>
                             </tr>
                             <?php 
                                 $reviews = $db->prepare("SELECT * FROM reviews WHERE product_id = :id");
@@ -110,7 +111,7 @@
                                             <td>" . $data['name'] . "</td>
                                             <td>" . $data['stars'] . "</td>
                                             <td>" . $data['description'] . "</td>
-                                            <td><a href='/healthone/products/product.php?id=".$_GET['id']."&delete_review=".$data['id']."' class='btn'><i class='fas fa-times'></i></a></td>
+                                            <td class='delete__review'><a href='/healthone/products/product.php?id=".$_GET['id']."&delete_review=".$data['id']."' class='btn__delete--review'><i class='fas fa-times'></i></a></td>
                                         </tr>
                                         ";
                                     }

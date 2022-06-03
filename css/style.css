@@ -673,6 +673,16 @@ table td, th {
   cursor: not-allowed;
 }
 
+.delete__review {
+  text-align: center;
+  width: 30px;
+  background-color: #ff5d5d;
+}
+
+.btn__delete--review .fas {
+  color: white;
+}
+
 .description__submit textarea {
   height: 100px;
   resize: vertical;
