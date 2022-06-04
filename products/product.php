@@ -89,6 +89,48 @@
         <section class="reviews">
             <div class="container">
                 <div class="row">
+                <div class="review__wrapper">
+                        <?php
+                        if (isset($_SESSION['user'])) {
+                            echo "
+                            <div class='review__create'>
+                                <form method='POST'>
+                                    <div class='name__stars'>
+                                        <label>Naam</label>
+                                        <input name='name' type='text' class='name__review' disabled value='" . $_SESSION['username'] . "'>
+
+                                        <label>Hoeveel sterren geef je?</label>
+                                        <select name='stars'>
+                                            <option value='0'>0</option>
+                                            <option value='1'>1</option>
+                                            <option value='2'>2</option>
+                                            <option value='3'>3</option>
+                                            <option value='4'>4</option>
+                                            <option value='5'>5</option>
+                                        </select>
+                                    </div>
+
+                                    <div class='description__submit'>
+                                        <label>Mening</label>
+                                        <textarea name='description'></textarea>
+        
+                                        <input class='btn' type='submit' name='reviewsubmit' value='Verzenden'>
+                                    </div>
+                                </form>
+                            </div>
+                            ";
+                        } else {
+                            echo "
+                            <div class='review__login'>
+                                <h3 class='review__login--title'>Login om een review te plaatsen.</h3>
+                                <div class='btn__wrapper'>
+                                    <a href='/healthone/login/login.php' class='btn'>Inloggen</a>
+                                </div>
+                            </div>
+                            ";
+                        }
+                        ?>
+                    </div>
                     <div class="reviews__wrapper">
                         <table>
                             <tr class="reviews__top">
@@ -125,39 +167,6 @@
                                 }
                             ?>
                         </table>
-                    </div>
-                    <div class="review__wrapper">
-                        <?php
-                        if (isset($_SESSION['user'])) {
-                            echo "
-                            <div class='review__create'>
-                                <form method='POST'>
-                                    <div class='name__stars'>
-                                        <label>Naam</label>
-                                        <input name='name' type='text' class='name__review' disabled value='" . $_SESSION['username'] . "'>
-
-                                        <label>Hoeveel sterren geef je?</label>
-                                        <select name='stars'>
-                                            <option value='0'>0</option>
-                                            <option value='1'>1</option>
-                                            <option value='2'>2</option>
-                                            <option value='3'>3</option>
-                                            <option value='4'>4</option>
-                                            <option value='5'>5</option>
-                                        </select>
-                                    </div>
-
-                                    <div class='description__submit'>
-                                        <label>Mening</label>
-                                        <textarea name='description'></textarea>
-        
-                                        <input class='btn' type='submit' name='reviewsubmit' value='Verzenden'>
-                                    </div>
-                                </form>
-                            </div>
-                            ";
-                        }
-                        ?>
                     </div>
                 </div>
             </div>

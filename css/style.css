@@ -549,7 +549,6 @@ footer {
 */
 
 .product__wrapper {
-  height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -704,4 +703,10 @@ table td, th {
 
 .reviews__top th {
   color: white;
+}
+
+.review__login {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
