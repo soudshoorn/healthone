@@ -34,7 +34,7 @@
                         echo "
                         <div class='nav__wrapper--right'>
                             <a href='/healthone/login/logout.php' class='nav__button'><i class='fas fa-sign-out-alt'></i></i>Uitloggen</a>
-                            <a href='/healthone/admin/manageproduct.php' class='nav__button'>Admin</a>
+                            <a href='/healthone/admin/admin.php' class='nav__button'>Admin</a>
                         </div>";
                     } else if(isset($_SESSION['user'])) { 
                         echo "

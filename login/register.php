@@ -7,16 +7,7 @@
         <?php
             include_once('../dbConnection.php');
             include_once('../components/Nav.php');
-
-            if(isset($_SESSION['success'])) {
-                echo "<div class='row alert alert-success'>".$_SESSION['success']."</div>";
-                unset($_SESSION['success']);
-            }
-
-            if(isset($_SESSION['error'])) {
-                echo "<div class='row alert alert-error'>ERROR: ".$_SESSION['error']."</div>";
-                unset($_SESSION['error']);
-            }
+            include_once('../components/Alerts.php');
 
             if (isset($_POST['submit'])) {
                 $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);

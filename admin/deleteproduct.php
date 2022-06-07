@@ -20,10 +20,10 @@
         $delete->bindParam('id', $id);
 
         if($delete->execute()){
-            header("Location: ./manageproduct.php");  
+            header("Location: ./admin.php");  
             $_SESSION['success'] = "Het product is succesvol verwijderd.";      
         } else {
-            header("Location: ./manageproduct.php");        
+            header("Location: ./admin.php");        
             $_SESSION['error'] = "Iets is fout gegaan bij het verwijderen. Probeer het later opnieuw.";
         }
     } catch (PDOException $e) {

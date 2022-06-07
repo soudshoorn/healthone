@@ -7,16 +7,7 @@
             <?php
                 include_once('../dbConnection.php');   
                 include_once('../components/Nav.php');
-
-                if(isset($_SESSION['success'])) {
-                    echo "<div class='row alert alert-success'>".$_SESSION['success']."</div>";
-                    unset($_SESSION['success']);
-                }
-
-                if(isset($_SESSION['error'])) {
-                    echo "<div class='row alert alert-error'>ERROR: ".$_SESSION['error']."</div>";
-                    unset($_SESSION['error']);
-                }
+                include_once('../components/Alerts.php');
 
                 if (isset($_POST['submit'])) {
 
@@ -70,6 +61,61 @@
                 }
             ?>
 
+            <section class="users">
+                <div class="container">
+                    <div class="row">
+                    <table class="manageproducts__table">
+                            <tr>
+                                <th>ID</th>
+                                <th>Naam</th>
+                                <th>E-Mail</th>
+                                <th>Rol</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        <?php 
+                            $category = $db->prepare("SELECT * FROM users");
+                            $category->execute();
+                
+                            $result = $category->fetchAll(PDO::FETCH_ASSOC);
+
+                            foreach($result as &$data) {
+                                echo "
+                                <tr>
+                                    <td>" . $data['id'] . "</td>
+                                    <td>" . $data['name'] . "</td>
+                                    <td>" . $data['email'] . "</td>
+                                    <td>" . $data['role'] . "</td>
+                                    <td class='edit__btn--wrapper'><a href='/healthone/admin/functionalities/edituser.php?id=" . $data['id'] . "' class='edit__btn'><i class='fas fa-pencil-alt'></i></i></a></td>
+                                    <td class='delete__btn--wrapper'><a href='/healthone/admin/admin.php?verify_userdelete=".$data['id']."' class='delete__btn'><i class='fas fa-times'></i></a></td>
+                                </tr>
+                                ";
+                            }
+
+
+                            if(isset($_GET['verify_userdelete'])) {
+                                $id = $_GET['verify_userdelete'];
+                                echo "
+                                <div class='verify'>
+                                <div class='container'>
+                                    <div class='row'>
+                                        <form method='POST' class='verify__form'>
+                                            <h3>Weet je zeker dat je deze gebruiker wilt verwijderen?</h3>
+                            
+                                            <a href='/healthone/admin/admin.php' class='btn verify__cancel'>Annuleren</a>
+                                            <a href='/healthone/admin/deleteuser.php?id=".$id."' class='btn verify__delete'>Verwijderen</a>
+                                        </form>
+                                    </div>
+                                </div>
+                                </div>
+                                ";
+                            }
+                        ?>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
             <section class="manageproducts">
                 <div class="container">
                     <div class="row">
@@ -98,14 +144,14 @@
                                     <td class='manageproduct__description'>" . $data['description'] . "</td>
                                     <td>" . $data['category_id'] . "</td>
                                     <td class='edit__btn--wrapper'><a href='/healthone/admin/functionalities/editproduct.php?id=" . $data['id'] . "' class='edit__btn'><i class='fas fa-pencil-alt'></i></i></a></td>
-                                    <td class='delete__btn--wrapper'><a href='/healthone/admin/manageproduct.php?verify_delete=".$data['id']."' class='delete__btn'><i class='fas fa-times'></i></a></td>
+                                    <td class='delete__btn--wrapper'><a href='/healthone/admin/admin.php?verify_productdelete=".$data['id']."' class='delete__btn'><i class='fas fa-times'></i></a></td>
                                 </tr>
                                 ";
                             }
 
 
-                            if(isset($_GET['verify_delete'])) {
-                                $id = $_GET['verify_delete'];
+                            if(isset($_GET['verify_productdelete'])) {
+                                $id = $_GET['verify_productdelete'];
                                 echo "
                                 <div class='verify'>
                                 <div class='container'>
@@ -113,7 +159,7 @@
                                         <form method='POST' class='verify__form'>
                                             <h3>Weet je zeker dat je dit product wilt verwijderen?</h3>
                             
-                                            <a href='/healthone/admin/manageproduct.php' class='btn verify__cancel'>Annuleren</a>
+                                            <a href='/healthone/admin/admin.php' class='btn verify__cancel'>Annuleren</a>
                                             <a href='/healthone/admin/deleteproduct.php?id=".$id."' class='btn verify__delete'>Verwijderen</a>
                                         </form>
                                     </div>
