@@ -97,16 +97,20 @@
                                 $id = $_GET['verify_userdelete'];
                                 echo "
                                 <div class='verify'>
-                                <div class='container'>
-                                    <div class='row'>
-                                        <form method='POST' class='verify__form'>
-                                            <h3>Weet je zeker dat je deze gebruiker wilt verwijderen?</h3>
-                            
-                                            <a href='/healthone/admin/admin.php' class='btn verify__cancel'>Annuleren</a>
-                                            <a href='/healthone/admin/deleteuser.php?id=".$id."' class='btn verify__delete'>Verwijderen</a>
-                                        </form>
+                                    <div class='container'>
+                                        <div class='row'>
+                                            <div class='verify__wrapper'>
+                                                <form method='POST' class='verify__form'>
+                                                    <h3>Weet je zeker dat je deze gebruiker wilt verwijderen?</h3>
+                                
+                                                    <div class='verify__buttons'>
+                                                        <a href='/healthone/admin/admin.php' class='btn verify__cancel'>Annuleren</a>
+                                                        <a href='/healthone/admin/deleteuser.php?id=".$id."' class='btn verify__delete'>Verwijderen</a>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
                                 </div>
                                 ";
                             }
@@ -154,16 +158,20 @@
                                 $id = $_GET['verify_productdelete'];
                                 echo "
                                 <div class='verify'>
-                                <div class='container'>
-                                    <div class='row'>
-                                        <form method='POST' class='verify__form'>
-                                            <h3>Weet je zeker dat je dit product wilt verwijderen?</h3>
-                            
-                                            <a href='/healthone/admin/admin.php' class='btn verify__cancel'>Annuleren</a>
-                                            <a href='/healthone/admin/deleteproduct.php?id=".$id."' class='btn verify__delete'>Verwijderen</a>
-                                        </form>
+                                    <div class='container'>
+                                        <div class='row'>
+                                            <div class='verify__wrapper'>
+                                                <form method='POST' class='verify__form'>
+                                                    <h3>Weet je zeker dat je dit product wilt verwijderen?</h3>
+                                
+                                                    <div class='verify__buttons'>
+                                                        <a href='/healthone/admin/admin.php' class='btn verify__cancel'>Annuleren</a>
+                                                        <a href='/healthone/admin/deleteproduct.php?id=".$id."' class='btn verify__delete'>Verwijderen</a>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
                                 </div>
                                 ";
                             }
