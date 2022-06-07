@@ -48,7 +48,14 @@ a {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 350px;
+  max-width: 200px;
+}
+
+.manageproduct__categoryid {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 20px;
 }
 
 .far, .fas {
@@ -80,6 +87,10 @@ button {
   margin: 0 auto;
 }
 
+section {
+  margin: 0 24px;
+}
+
 /*
 
     NAVBAR
@@ -87,6 +98,7 @@ button {
 */
 
 nav {
+  margin: 0 24px;
   transition: all 300ms ease;
 }
 
@@ -149,6 +161,10 @@ nav {
 
 .nav__link--anchor:hover {
   color: #70afce;
+}
+
+.nav__button--profile {
+  font-size: 22px;
 }
 
 /*
@@ -720,4 +736,55 @@ table td, th {
   display: flex;
   flex-direction: column;
   gap: 32px;
+}
+
+/*
+
+  ADMIN
+
+*/
+
+.manageproducts {
+  margin: 36px 24px;
+}
+
+.manageproducts__create {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 4px;
+}
+
+.manageproducts__create--btn {
+  background-color: #09c97f;
+}
+
+.manageproducts__create--btn:hover {
+  background-color: #007548;
+}
+
+.manageproducts__create--btn .fas {
+  color: white;
+}
+
+.addproduct form {
+  position: absolute; 
+  top: 30;
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  width: 450px;
+  background-color: white;
+  border-radius: 4px;
+  padding: 24px;
+  border: 1px solid #00112c;
+}
+
+.addproduct__cancel {
+  display: flex;
+  justify-content: end;
+}
+
+.addproduct__cancel .btn {
+  background-color: rgb(255, 79, 79);
 }

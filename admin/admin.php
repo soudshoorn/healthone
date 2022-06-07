@@ -9,6 +9,43 @@
                 include_once('../components/Nav.php');
                 include_once('../components/Alerts.php');
 
+                if(!isset($_SESSION['admin'])) {
+                    exit();
+                }
+
+                if(isset($_GET['createproduct'])) {
+                    echo "
+                    <section class='addproduct'>
+                        <div class='container'>
+                            <div class='row'>
+                                <form method='POST' enctype='multipart/form-data'>
+                                    <label>Categorie</label>
+                                    <select name='category'>
+                                        <option value='1'>Crosstrainers</option>
+                                        <option value='2'>Loopbanden</option>
+                                    </select>
+                
+                                    <label>Naam</label>
+                                    <input type='text' name='name' required>
+                
+                                    <label>Foto</label>
+                                    <input type='file' name='file' required>
+                
+                                    <label>Beschrijving</label>
+                                    <textarea name='description' required></textarea>
+                
+                                    <input class='btn' type='submit' name='submit' value='Verzenden'>
+
+                                    <div class='addproduct__cancel'>
+                                        <a href='/healthone/admin/admin.php' class='addproduct__cancel btn'>Annuleren</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                    ";
+                }
+
                 if (isset($_POST['submit'])) {
 
                     $file = $_FILES['file'];
@@ -45,6 +82,7 @@
                                 $query->bindParam("category_id", $category);
                                 if ($query->execute()) {
                                     $_SESSION['success'] = "Het nieuwe product is toegevoegd.";
+                                    header("Location: ./admin.php");
                                 } else {
                                     $_SESSION['error'] = "Er is iets fout gegaan, probeer later opnieuw.";
                                 }
@@ -74,10 +112,10 @@
                                 <th></th>
                             </tr>
                         <?php 
-                            $category = $db->prepare("SELECT * FROM users");
-                            $category->execute();
+                            $users = $db->prepare("SELECT * FROM users");
+                            $users->execute();
                 
-                            $result = $category->fetchAll(PDO::FETCH_ASSOC);
+                            $result = $users->fetchAll(PDO::FETCH_ASSOC);
 
                             foreach($result as &$data) {
                                 echo "
@@ -123,13 +161,16 @@
             <section class="manageproducts">
                 <div class="container">
                     <div class="row">
+                        <div class="manageproducts__create">
+                            <a href="/healthone/admin/admin.php?createproduct" class="btn manageproducts__create--btn">Nieuw  <i class="fas fa-plus"></i></a>
+                        </div>
                         <table class="manageproducts__table">
                             <tr>
                                 <th>ID</th>
                                 <th>Naam</th>
                                 <th>Image</th>
                                 <th>Beschrijving</th>
-                                <th>Categorie</th>
+                                <th>Cat. ID</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -143,10 +184,10 @@
                                 echo "
                                 <tr>
                                     <td>" . $data['id'] . "</td>
-                                    <td>" . $data['name'] . "</td>
-                                    <td>" . $data['img'] . "</td>
+                                    <td class='manageproduct__description'>" . $data['name'] . "</td>
+                                    <td class='manageproduct__description'>" . $data['img'] . "</td>
                                     <td class='manageproduct__description'>" . $data['description'] . "</td>
-                                    <td>" . $data['category_id'] . "</td>
+                                    <td class='manageproduct__categoryid'>" . $data['category_id'] . "</td>
                                     <td class='edit__btn--wrapper'><a href='/healthone/admin/functionalities/editproduct.php?id=" . $data['id'] . "' class='edit__btn'><i class='fas fa-pencil-alt'></i></i></a></td>
                                     <td class='delete__btn--wrapper'><a href='/healthone/admin/admin.php?verify_productdelete=".$data['id']."' class='delete__btn'><i class='fas fa-times'></i></a></td>
                                 </tr>
@@ -177,30 +218,6 @@
                             }
                         ?>
                         </table>
-                    </div>
-                </div>
-            </section>
-            <section class="addproduct">
-                <div class="container">
-                    <div class="row">
-                        <form method="POST" enctype="multipart/form-data">
-                            <label>Categorie</label>
-                            <select name="category">
-                                <option value="1">Crosstrainers</option>
-                                <option value="2">Loopbanden</option>
-                            </select>
-        
-                            <label>Naam</label>
-                            <input type="text" name="name" required>
-        
-                            <label>Foto</label>
-                            <input type="file" name="file" required>
-        
-                            <label>Beschrijving</label>
-                            <textarea name="description" required></textarea>
-        
-                            <input class="btn" type="submit" name="submit" value="Verzenden">
-                        </form>
                     </div>
                 </div>
             </section>

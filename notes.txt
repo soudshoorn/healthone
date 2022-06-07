@@ -5,3 +5,7 @@
 - Profiel Pagina
 - Product Edit
 - Styling fixen bij forms (reviews, admin)
+
+* BUGS * 
+
+- Email wordt gecheckt bij profiel aanpassen maar alsnog wordt de else if genegeerd.

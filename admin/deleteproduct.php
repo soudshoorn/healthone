@@ -16,6 +16,10 @@
 
         unlink("../assets/img/".$foto);
     
+        $deletereviews = $db->prepare("DELETE FROM reviews WHERE product_id = :product_id");
+        $deletereviews->bindParam('product_id', $id);
+        $deletereviews->execute();
+
         $delete = $db->prepare("DELETE FROM products WHERE id = :id ");
         $delete->bindParam('id', $id);
 

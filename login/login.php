@@ -27,14 +27,15 @@
 
                             if ($data['role'] == 'admin') {
                                 $_SESSION['admin'] = true;
-                                header("Location: /healthone/admin/manageproduct.php");
+                                header("Location: /healthone/admin/admin.php");
                             } else if ($data['role'] == 'guest') {
-                                $_SESSION['admin'] = false;
+                                unset($_SESSION['admin']);
                             }
 
-                            header("Location: /healthone/index.php");
+                            header("Location: ../index.php");
                         } else {
                             $_SESSION['error'] = "Onjuist wachtwoord of email adres.";
+                            header("Location: ./login.php");
                         }
                     }
                 }
