@@ -29,8 +29,11 @@
                                         <img src='../assets/img/" . $data['img'] ."' alt='' class='category__image--img'>
                                     </figure>
                                     <div class='category__description'>
-                                        <h3 class='category__description--title'>" . $data['name'] . "</h3>
-                                        <a href='apparaten.php?id=" . $data['id'] . "'><button class='btn'>Meer Details</button></a>
+                                        <div>
+                                            <h3 class='category__description--title'>" . $data['name'] . "</h3>
+                                            <p class='category__description--para'>Categorie</p>
+                                        </div>
+                                        <a href='apparaten.php?id=" . $data['id'] . "' class='product__btn--wrapper'><i class='fas fa-angle-right'></i></a>
                                     </div>
                                 </div>";
                             }
