@@ -175,8 +175,13 @@
                                         if(isset($_SESSION['admin'])) {
                                             echo "
                                             <tr>
-                                                <td>" . $data['name'] . "</td>
-                                                <td>" . $data['stars'] . "</td>
+                                            <td>" . $data['name'] . "</td>
+                                            <td>"; 
+                                            for($i=0; $i < $data['stars']; $i++) {
+                                                echo "<i class='fas fa-star'></i>";
+                                            }
+                                            echo "
+                                            </td>
                                                 <td>" . $data['description'] . "</td>
                                                 <td class='delete__review'><a href='/healthone/products/product.php?id=".$_GET['id']."&delete_review=".$data['id']."&reviews' class='btn__delete--review'><i class='fas fa-times'></i></a></td>
                                             </tr>
@@ -185,7 +190,12 @@
                                             echo "
                                             <tr>
                                                 <td>" . $data['name'] . "</td>
-                                                <td>" . $data['stars'] . "</td>
+                                                <td>"; 
+                                                for($i=0; $i < $data['stars']; $i++) {
+                                                    echo "<i class='fas fa-star'></i>";
+                                                }
+                                            echo "
+                                                </td>
                                                 <td>" . $data['description'] . "</td>
                                             </tr>
                                             ";
