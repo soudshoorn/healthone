@@ -98,19 +98,35 @@
                         <?php 
                             // Print elk product
                             foreach($productresult as &$data) {
-                                echo "
-                                <div class='product__output'>
-                                    <figure class='product__image'>
-                                        <img src='../assets/img/" . $data['img'] ."' alt='' class='product__image--img'>
-                                    </figure>
-                                    <div class='product__description'>
-                                        <div class='product__picker'>
-                                            <ul class='product__picker--list'>
-                                                <li class='product__picker--link'><a href='product.php?id=".$_GET['id']."' class='product__link'>Beschrijving</a></li>
-                                                <li class='product__picker--link'><a href='product.php?id=".$_GET['id']."&reviews' class='product__link'>Reviews</a></li>
-                                            </ul>
-                                        </div>
-                                ";
+                                if(isset($_GET['reviews'])) {
+                                    echo "
+                                    <div class='product__output'>
+                                        <figure class='product__image'>
+                                            <img src='../assets/img/" . $data['img'] ."' alt='' class='product__image--img'>
+                                        </figure>
+                                        <div class='product__description'>
+                                            <div class='product__picker'>
+                                                <ul class='product__picker--list'>
+                                                    <li class='product__picker--link'><a href='product.php?id=".$_GET['id']."' class='product__link'>Beschrijving</a></li>
+                                                    <li class='product__picker--link product__picker--active'><a href='product.php?id=".$_GET['id']."&reviews' class='product__link'>Reviews</a></li>
+                                                </ul>
+                                            </div>
+                                    ";
+                                } else {
+                                    echo "
+                                    <div class='product__output'>
+                                        <figure class='product__image'>
+                                            <img src='../assets/img/" . $data['img'] ."' alt='' class='product__image--img'>
+                                        </figure>
+                                        <div class='product__description'>
+                                            <div class='product__picker'>
+                                                <ul class='product__picker--list'>
+                                                    <li class='product__picker--link product__picker--active'><a href='product.php?id=".$_GET['id']."' class='product__link'>Beschrijving</a></li>
+                                                    <li class='product__picker--link'><a href='product.php?id=".$_GET['id']."&reviews' class='product__link'>Reviews</a></li>
+                                                </ul>
+                                            </div>
+                                    ";
+                                }
                                 if(isset($_GET['reviews'])) {
                                     $reviews = $db->prepare("SELECT * FROM reviews WHERE product_id = :id");
                                     $reviews->bindParam("id", $_GET['id']);
@@ -119,26 +135,28 @@
                                     $reviewsresult = $reviews->fetchAll(PDO::FETCH_ASSOC);
 
                                     if(!$reviewsresult) {
-                                        if(isset($_SESSION['user'])) {
-                                            echo "
-                                            <div class='noreviews__wrapper'>
-                                                <h3 class='noreviews__wrapper--title'>Er zijn nog geen reviews geplaatst.</h3>
-                                                <a href='/healthone/products/product.php?id=".$_GET['id']."&reviews&createreview' class='btn manageproducts__create--btn'>Nieuw  <i class='fas fa-plus'></i></a>
-                                            </div>
-                                            ";
-                                        } else {
-                                            echo "
-                                            <div class='noreviews__wrapper'>
-                                                <h3 class='noreviews__wrapper--title'>Je moet ingelogd zijn om een review te plaatsen.</h3>
-                                                <a href='/healthone/login/login.php' class='btn'>Login</a>
-                                            </div>
-                                            ";
-                                        }
+                                        echo "
+                                        <div class='noreviews__wrapper'>
+                                            <h3 class='noreviews__wrapper--title'>Er zijn nog geen reviews geplaatst.</h3>
+                                            <a href='/healthone/products/product.php?id=".$_GET['id']."&reviews&createreview' class='btn manageproducts__create--btn'>Nieuw  <i class='fas fa-plus'></i></a>
+                                        </div>
+                                        ";
+                                    } else if (!isset($_SESSION['user'])) {
+                                        echo "
+                                        <div class='noreviews__wrapper'>
+                                            <h3 class='noreviews__wrapper--title'>Je moet ingelogd zijn om een review te plaatsen.</h3>
+                                            <a href='/healthone/login/login.php' class='btn'>Login</a>
+                                        </div>
+                                        ";
                                     }
 
                                     foreach($reviewsresult as &$data) {
                                         if(isset($_SESSION['admin'])) {
                                             echo "
+                                            <div class='noreviews__wrapper'>
+                                                <h3 class='noreviews__wrapper--title'>Plaats ook een review.</h3>
+                                                <a href='/healthone/products/product.php?id=".$_GET['id']."&reviews&createreview' class='btn manageproducts__create--btn'>Nieuw  <i class='fas fa-plus'></i></a>
+                                            </div>
                                             <table>
                                             <tr class='reviews__top'>
                                                 <th>Naam</th>

@@ -1,20 +1,20 @@
 <html>
     <head>
         <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="./css/style.css">
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
     </head>
     <body>
             <?php
-                include_once('./dbConnection.php');
-                include_once('./components/Nav.php');
-                include_once('./components/Alerts.php');
+                include_once('../dbConnection.php');
+                include_once('../components/Nav.php');
+                include_once('../components/Alerts.php');
 
-                if(($_GET['user'] != $_SESSION['user']) || (!isset($_SESSION['user']))) {
-                    header("Location: ./index.php");
+                if(!isset($_SESSION['admin'])) {
+                    header("Location: ../index.php");
                 }
 
                 $user = $db->prepare("SELECT * FROM users WHERE id = :id");
-                $user->bindParam("id", $_GET['user']);
+                $user->bindParam("id", $_GET['id']);
                 $user->execute();
     
                 $result = $user->fetch(PDO::FETCH_ASSOC);
@@ -26,7 +26,6 @@
                     $result = $users->fetchAll(PDO::FETCH_ASSOC);
 
                     foreach($result as $data) {
-
                         $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
                         $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
                         $role = filter_input(INPUT_POST, "role", FILTER_SANITIZE_STRING);
@@ -40,24 +39,24 @@
                             $userupdate->bindParam("email", $email);
                             $userupdate->bindParam("role", $role);
                             $userupdate->bindParam("password", $password);
-                            $userupdate->bindParam("id", $_GET['user']);
+                            $userupdate->bindParam("id", $_GET['id']);
 
                             if($userupdate->execute()) {
                                 $_SESSION['success'] = "De nieuwe gegevens zijn succesvol opgeslagen.";
-                                header("Location: ./profile.php?user=".$_SESSION['user']."");
+                                header("Location: ./edituser.php?id=".$_GET['id']."");
                             } else {
                                 $_SESSION['error'] = "Er is een fout opgetreden tijdens het opslaan van de nieuwe gegevens.";
-                                header("Location: ./profile.php?user=".$_SESSION['user']."");
+                                header("Location: ./edituser.php?id=".$_GET['id']."");
                             }
                         } else if ($password !== $passwordrepeat) {
                             $_SESSION['error'] = "De wachtwoorden komen niet overeen.";
-                            header("Location: ./profile.php?user=".$_SESSION['user']."");
+                            header("Location: ./edituser.php?id=".$_GET['id']."");
                         } else if ($data['email'] == $email) {
                             $_SESSION['error'] = "Dit email adres is al in gebruik.";
-                            header("Location: ./profile.php?user=".$_SESSION['user']."");
+                            header("Location: ./edituser.php?id=".$_GET['id']."");
                         } else {
                             $_SESSION['error'] = "Er is een onbekende fout opgetreden.";
-                            header("Location: ./profile.php?user=".$_SESSION['user']."");
+                            header("Location: ./edituser.php?id=".$_GET['id']."");
                         }
                     }
                 }
@@ -67,27 +66,29 @@
                 <div class="container">
                     <div class="row">
                         <div class="profile__header">
-                            <h3 class="profile__header--title">Hallo, <?php echo $result['name']; ?></h3>
+                            <h3 class="profile__header--title">Pas het account van, <?php echo $result['name']; ?> aan.</h3>
                         </div>
                         <div class="profile__edit">
-                            <h5 class="profile__edit--title">Pas uw account aan.</h5>
                             <div class="profile__edit--wrapper">
                                 <form method="POST">
-                                    <div class="profile__edit--top">
-                                        <label class="name register__label">Naam</label>
-                                        <input type="text" class="name register__field" placeholder="John Doe" name="name">
-                                    
-                                        <label class="email register__label">E-Mail</label>
-                                        <input type="email" class="email register__field" placeholder="john@doe.com" name="email">
-                                    </div>
+                                    <label class="name register__label">Naam</label>
+                                    <input type="text" class="name register__field" placeholder="John Doe" name="name" required>
+                                
+                                    <label class="email register__label">E-Mail</label>
+                                    <input type="email" class="email register__field" placeholder="john@doe.com" name="email" required>
 
-                                    <div class="profile__edit--bottom">
-                                        <label class="email register__label">Wachtwoord</label>
-                                        <input type="password" class="password register__field" placeholder="••••••••••" name="password">
-    
-                                        <label class="email register__label">Herhaal Wachtwoord</label>
-                                        <input type="password" class="password register__field" placeholder="••••••••••" name="passwordrepeat">
-                                    </div>
+                                    <label class="email register__label">Wachtwoord</label>
+                                    <input type="password" class="password register__field" placeholder="••••••••••" name="password" required>
+
+                                    <label class="email register__label">Herhaal Wachtwoord</label>
+                                    <input type="password" class="password register__field" placeholder="••••••••••" name="passwordrepeat" required>
+                                    
+                                    <label class="email register__label">Rol</label>
+                                    <select name="role">
+                                        <option value="default" selected disabled required>--- Kies een rol ---</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="guest">Guest</option>
+                                    </select>
 
                                     <input type="submit" class="btn" value="Bevestigen" name="editprofile">
                                 </form>

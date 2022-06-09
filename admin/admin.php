@@ -124,7 +124,7 @@
                                     <td>" . $data['name'] . "</td>
                                     <td>" . $data['email'] . "</td>
                                     <td>" . $data['role'] . "</td>
-                                    <td class='edit__btn--wrapper'><a href='/healthone/admin/functionalities/edituser.php?id=" . $data['id'] . "' class='edit__btn'><i class='fas fa-pencil-alt'></i></i></a></td>
+                                    <td class='edit__btn--wrapper'><a href='/healthone/admin/edituser.php?id=" . $data['id'] . "' class='edit__btn'><i class='fas fa-pencil-alt'></i></i></a></td>
                                     <td class='delete__btn--wrapper'><a href='/healthone/admin/admin.php?verify_userdelete=".$data['id']."' class='delete__btn'><i class='fas fa-times'></i></a></td>
                                 </tr>
                                 ";
@@ -188,7 +188,7 @@
                                     <td class='manageproduct__description'>" . $data['img'] . "</td>
                                     <td class='manageproduct__description'>" . $data['description'] . "</td>
                                     <td class='manageproduct__categoryid'>" . $data['category_id'] . "</td>
-                                    <td class='edit__btn--wrapper'><a href='/healthone/admin/functionalities/editproduct.php?id=" . $data['id'] . "' class='edit__btn'><i class='fas fa-pencil-alt'></i></i></a></td>
+                                    <td class='edit__btn--wrapper'><a href='/healthone/admin/editproduct.php?id=" . $data['id'] . "' class='edit__btn'><i class='fas fa-pencil-alt'></i></i></a></td>
                                     <td class='delete__btn--wrapper'><a href='/healthone/admin/admin.php?verify_productdelete=".$data['id']."' class='delete__btn'><i class='fas fa-times'></i></a></td>
                                 </tr>
                                 ";
