@@ -70,8 +70,10 @@
 
                         if ($review->execute()) {
                             $_SESSION['success'] = "Je review is succesvol geplaatst.";
+                            header("Location: ./product.php?id=".$_GET['id']."&reviews");
                         } else {
                             $_SESSION['error'] = "Er is iets fout gegaan, probeer later opnieuw.";
+                            header("Location: ./product.php?id=".$_GET['id']."&reviews");
                         }
                     } catch (PDOException $e) {
                         echo "PDO Error: " . $e->getMessage();
@@ -147,22 +149,31 @@
                                             <h3 class='noreviews__wrapper--title'>Je moet ingelogd zijn om een review te plaatsen.</h3>
                                             <a href='/healthone/login/login.php' class='btn'>Login</a>
                                         </div>
+                                        <table>
+                                        <tr class='reviews__top'>
+                                            <th>Naam</th>
+                                            <th>Sterren</th>
+                                            <th>Mening</th>
+                                        </tr>
+                                        ";
+                                    } else {
+                                        echo "
+                                        <div class='noreviews__wrapper'>
+                                            <h3 class='noreviews__wrapper--title'>Plaats ook een review.</h3>
+                                            <a href='/healthone/products/product.php?id=".$_GET['id']."&reviews&createreview' class='btn manageproducts__create--btn'>Nieuw  <i class='fas fa-plus'></i></a>
+                                        </div>
+                                        <table>
+                                        <tr class='reviews__top'>
+                                            <th>Naam</th>
+                                            <th>Sterren</th>
+                                            <th>Mening</th>
+                                        </tr>
                                         ";
                                     }
 
                                     foreach($reviewsresult as &$data) {
                                         if(isset($_SESSION['admin'])) {
                                             echo "
-                                            <div class='noreviews__wrapper'>
-                                                <h3 class='noreviews__wrapper--title'>Plaats ook een review.</h3>
-                                                <a href='/healthone/products/product.php?id=".$_GET['id']."&reviews&createreview' class='btn manageproducts__create--btn'>Nieuw  <i class='fas fa-plus'></i></a>
-                                            </div>
-                                            <table>
-                                            <tr class='reviews__top'>
-                                                <th>Naam</th>
-                                                <th>Sterren</th>
-                                                <th>Mening</th>
-                                            </tr>
                                             <tr>
                                                 <td>" . $data['name'] . "</td>
                                                 <td>" . $data['stars'] . "</td>
@@ -172,12 +183,6 @@
                                             ";
                                         } else {
                                             echo "
-                                            <table>
-                                            <tr class='reviews__top'>
-                                                <th>Naam</th>
-                                                <th>Sterren</th>
-                                                <th>Mening</th>
-                                            </tr>
                                             <tr>
                                                 <td>" . $data['name'] . "</td>
                                                 <td>" . $data['stars'] . "</td>
