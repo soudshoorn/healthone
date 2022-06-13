@@ -17,10 +17,10 @@
                                 <div class='review__wrapper'>
                                     <div class='review__create'>
                                         <form method='POST'>
-                                            <div class='name__stars'>
-                                                <label>Naam</label>
-                                                <input name='name' type='text' class='name__review' disabled value='" . $_SESSION['username'] . "'>
+                                            <label>Naam</label>
+                                            <input name='name' type='text' class='name__review' disabled value='" . $_SESSION['username'] . "'>
 
+                                            <div class='name__stars'>
                                                 <label>Hoeveel sterren geef je?</label>
                                                 <select name='stars'>
                                                     <option value='0'>0</option>
@@ -32,11 +32,15 @@
                                                 </select>
                                             </div>
 
+                                            <label>Mening</label>
+                                            <textarea name='description'></textarea>
+
                                             <div class='description__submit'>
-                                                <label>Mening</label>
-                                                <textarea name='description'></textarea>
-                
                                                 <input class='btn' type='submit' name='reviewsubmit' value='Verzenden'>
+                                                
+                                                <div class='addproduct__cancel'>
+                                                    <a href='./product.php?id=".$_GET['id']."&reviews' class='addproduct__cancel btn'>Annuleren</a>
+                                                </div>
                                             </div>
                                         </form>
                                     </div>
@@ -69,8 +73,8 @@
                         $review->bindParam("product_id", $product_id);
 
                         if ($review->execute()) {
-                            $_SESSION['success'] = "Je review is succesvol geplaatst.";
                             header("Location: ./product.php?id=".$_GET['id']."&reviews");
+                            $_SESSION['success'] = "Je review is succesvol geplaatst.";
                         } else {
                             $_SESSION['error'] = "Er is iets fout gegaan, probeer later opnieuw.";
                             header("Location: ./product.php?id=".$_GET['id']."&reviews");
