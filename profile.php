@@ -74,19 +74,27 @@
                             <div class="profile__edit--wrapper">
                                 <form method="POST">
                                     <div class="profile__edit--top">
-                                        <label class="name register__label">Naam</label>
-                                        <input type="text" class="name register__field" placeholder="John Doe" name="name">
-                                    
-                                        <label class="email register__label">E-Mail</label>
-                                        <input type="email" class="email register__field" placeholder="john@doe.com" name="email">
+                                        <div class="profile__sub--wrapper">
+                                            <label class="name register__label">Naam</label>
+                                            <input type="text" class="name register__field" placeholder="John Doe" name="name">
+                                        </div>
+
+                                        <div class="profile__sub--wrapper">
+                                            <label class="email register__label">E-Mail</label>
+                                            <input type="email" class="email register__field" placeholder="john@doe.com" name="email">
+                                        </div>
                                     </div>
 
                                     <div class="profile__edit--bottom">
-                                        <label class="email register__label">Wachtwoord</label>
-                                        <input type="password" class="password register__field" placeholder="••••••••••" name="password">
-    
-                                        <label class="email register__label">Herhaal Wachtwoord</label>
-                                        <input type="password" class="password register__field" placeholder="••••••••••" name="passwordrepeat">
+                                        <div class="profile__sub--wrapper">
+                                            <label class="email register__label">Wachtwoord</label>
+                                            <input type="password" class="password register__field" placeholder="••••••••••" name="password">
+                                        </div>
+
+                                        <div class="profile__sub--wrapper">
+                                            <label class="email register__label">Herhaal Wachtwoord</label>
+                                            <input type="password" class="password register__field" placeholder="••••••••••" name="passwordrepeat">
+                                        </div>
                                     </div>
 
                                     <input type="submit" class="btn" value="Bevestigen" name="editprofile">

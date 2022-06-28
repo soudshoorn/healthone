@@ -173,6 +173,51 @@ nav {
 
 /*
 
+  CONTACT
+
+*/
+
+.contact {
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact__wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  align-items: center;
+}
+
+.contact__form--wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact__form--sub {
+  display: flex;
+  gap: 8px;
+}
+
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 50%;
+}
+
+.contact__form--input {
+  font-size: 16px;
+  border-radius: 8px;
+  padding: 6px 8px;
+  border: 1px solid #242424;
+  margin-bottom: 4px;
+}
+
+/*
+
     LANDING
 
 */
@@ -571,8 +616,14 @@ footer {
 }
 
 .product__picker--active {
+  font-weight: 600;
   color: #3A7B99;
-  border-bottom: 1px solid #3A7B99;
+  border-bottom: 3px solid #3A7B99;
+}
+
+.product__picker--link:hover {
+  color: #3A7B99;
+  border-bottom: 3px solid #3A7B99;
 }
 
 .product__btn {
@@ -609,11 +660,39 @@ footer {
   max-width: 170px;
 }
 
+
 /*
 
   PRODUCT
 
 */
+
+.creatreview {
+  position: absolute; 
+  top: 30;
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  width: 300px; /* Need a specific value to work */
+  background-color: white;
+  padding: 24px;
+  border: 1px solid #242424;
+  border-radius: 4px;
+}
+
+.createreview__description {
+  resize: vertical;
+}
+
+.createreview__description--submit {
+  display: flex;
+  gap: 8px;
+}
+
+.createreview__cancel {
+  background-color: rgb(255, 79, 79);
+}
 
 .noreviews__wrapper {
   display: flex;
@@ -624,6 +703,14 @@ footer {
 .product__picker--list {
   display: flex;
   gap: 16px;
+}
+
+.product__description--title {
+  font-size: 36px;
+}
+
+.product__description--para {
+  font-size: 18px;
 }
 
 .product__wrapper {
@@ -854,7 +941,13 @@ table td, th {
   height: 45vh;
 }
 
+.profile__sub--wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .profile form {
+  gap: 8px;
   width: 500px;
   display: flex;
   flex-direction: column;

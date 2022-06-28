@@ -9,43 +9,7 @@
                 include_once('../dbConnection.php');
                 include_once('../components/Alerts.php');
 
-                if(isset($_GET['createreview'])) {
-                    echo "
-                    <section class='reviews'>
-                        <div class='container'>
-                            <div class='row'>
-                                <div class='review__wrapper'>
-                                    <div class='review__create'>
-                                        <form method='POST'>
-                                            <div class='name__stars'>
-                                                <label>Naam</label>
-                                                <input name='name' type='text' class='name__review' disabled value='" . $_SESSION['username'] . "'>
 
-                                                <label>Hoeveel sterren geef je?</label>
-                                                <select name='stars'>
-                                                    <option value='0'>0</option>
-                                                    <option value='1'>1</option>
-                                                    <option value='2'>2</option>
-                                                    <option value='3'>3</option>
-                                                    <option value='4'>4</option>
-                                                    <option value='5'>5</option>
-                                                </select>
-                                            </div>
-
-                                            <div class='description__submit'>
-                                                <label>Mening</label>
-                                                <textarea name='description'></textarea>
-                
-                                                <input class='btn' type='submit' name='reviewsubmit' value='Verzenden'>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    ";
-                }
 
     
                 $product = $db->prepare("SELECT * FROM products WHERE id = :id");
@@ -54,7 +18,13 @@
     
                 $productresult = $product->fetchAll(PDO::FETCH_ASSOC);
 
+                if(isset($_POST['cancelsubmit'])) {
+                    header("Location: ./product.php?id=".$_GET['id']."&reviews");
+                }
+
+
                 if (isset($_POST['reviewsubmit'])) {
+                    
                     try {
                         $name = $_SESSION['username'];
                         $stars = filter_input(INPUT_POST, "stars", FILTER_SANITIZE_NUMBER_INT);
@@ -89,6 +59,42 @@
                     $db->exec($delete);
                     $_SESSION['success'] = "Review succesvol verwijderd.";  
                     header("Location: ./product.php?id=".$_GET['id']."&reviews");  
+                }
+
+                if(isset($_GET['createreview'])) {
+                    echo "
+                    <section class='creatreview'>
+                        <div class='container'>
+                            <div class='row'>
+                                <div class='review__wrapper'>
+                                    <div class='review__create'>
+                                        <form method='POST'>
+                                                <label>Naam</label>
+                                                <input name='name' type='text' class='name__review' disabled value='" . $_SESSION['username'] . "' required>
+
+                                                <label>Hoeveel sterren geef je?</label>
+                                                <select name='stars' required>
+                                                    <option value='0'>0</option>
+                                                    <option value='1'>1</option>
+                                                    <option value='2'>2</option>
+                                                    <option value='3'>3</option>
+                                                    <option value='4'>4</option>
+                                                    <option value='5'>5</option>
+                                                </select>
+
+                                            <label>Mening</label>
+                                            <textarea name='description' class='createreview__description' required></textarea>
+                                            <div class='createreview__description--submit'>
+                                                <input class='btn' type='submit' name='reviewsubmit' value='Verzenden'>
+                                                <a class='btn createreview__cancel' href='/healthone/products/product.php?id=".$_GET['id']."&reviews' >Annuleren</a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    ";
                 }
     
             ?>

@@ -89,10 +89,10 @@
                 <div class="row">
                     <div class="signup__wrapper">
                         <h1 class="signup__title">
-                            Lorem ipsum dolor si amet consectetur elit?
+                            Kom in contact en stel gerust al uw vragen!
                         </h1>
                         <div class="signup__btn">
-                            <button class="btn signup__btn--button">Lorem ipsum dolor</button>
+                            <a href="/healthone/contact.php" class="btn signup__btn--button">Contact</a>
                         </div>
                     </div>
                 </div>
