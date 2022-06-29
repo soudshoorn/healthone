@@ -20,12 +20,6 @@
                 $productresult = $product->fetch(PDO::FETCH_ASSOC);
 
                 if (isset($_POST['editsubmit'])) {
-                    $products = $db->prepare("SELECT * FROM products");
-                    $products->execute();
-        
-                    $result = $products->fetchAll(PDO::FETCH_ASSOC);
-
-                    foreach($result as $data) {
 
                         $file = $_FILES['file'];
 
@@ -49,6 +43,9 @@
                                     $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
                                     $category = filter_input(INPUT_POST, "category", FILTER_SANITIZE_STRING);
                                     $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_STRING);
+
+
+                                    unlink("../assets/img/".$productresult['img']);
                 
                                     $query = $db->prepare("UPDATE products SET name = :name, img = :img, description = :description, category_id = :category_id WHERE id = :id");
                 
@@ -59,7 +56,8 @@
                                     $query->bindParam("id", $_GET['id']);
 
                                     if ($query->execute()) {
-                                        $_SESSION['success'] = "Het product is succesvol gewijzigd.";
+                                    echo $productresult['img'];
+                                        $_SESSION['success'] = "Het product is succesvol gewijzigd.".$productresult['img']."";
                                         header("Location: ./admin.php");
                                     } else {
                                         $_SESSION['error'] = "Er is iets fout gegaan, probeer later opnieuw.";
@@ -78,7 +76,6 @@
                             $_SESSION['error'] = "Verboden bestandstype. Alleen jpg, jpeg & png's zijn toegestaan.";
                             header("Location: ./admin.php");
                         }
-                    }
                 }
 
             ?>
@@ -90,6 +87,8 @@
                                     <select name='category'>
                                         <option value='1' <?php if($productresult['category_id'] == 1){echo 'selected';}  ?> >Crosstrainers</option>
                                         <option value='2' <?php if($productresult['category_id'] == 2){echo 'selected';}  ?> >Loopbanden</option>
+                                        <option value='3' <?php if($productresult['category_id'] == 3){echo 'selected';}  ?> >Roeitrainers</option>
+                                        <option value='4' <?php if($productresult['category_id'] == 3){echo 'selected';}  ?> >Hometrainer</option>
                                     </select>
                 
                                     <label>Naam</label>

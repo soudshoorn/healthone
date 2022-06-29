@@ -9,10 +9,9 @@
         $image->bindParam('id', $id);
         $image->execute();
 
-        $result = $image->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($result as &$data) {
-            $foto = $data['img'];
-        }
+        $result = $image->fetch(PDO::FETCH_ASSOC);
+        
+        $foto = $result['img'];
 
         unlink("../assets/img/".$foto);
     

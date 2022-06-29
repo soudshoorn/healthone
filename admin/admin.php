@@ -23,6 +23,8 @@
                                     <select name='category'>
                                         <option value='1'>Crosstrainers</option>
                                         <option value='2'>Loopbanden</option>
+                                        <option value='3'>Roeitrainers</option>
+                                        <option value='4'>Hometrainer</option>
                                     </select>
                 
                                     <label>Naam</label>

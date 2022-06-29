@@ -701,16 +701,21 @@ footer {
 }
 
 .product__picker--list {
+  padding: 12px 0;
   display: flex;
   gap: 16px;
 }
 
 .product__description--title {
+  font-family: 'Rubik', sans-serif;
+  color: #3A7B99;
+  font-weight: 400;
   font-size: 36px;
 }
 
 .product__description--para {
   font-size: 18px;
+  color: #00112c;
 }
 
 .product__wrapper {
@@ -727,8 +732,6 @@ footer {
   display: flex;
   height: 600px;
   width: 100%;
-  border: 2px solid #d5d5d5;
-  border-radius: 4px;
 }
 
 .product__image {
@@ -741,6 +744,7 @@ footer {
 
 .product__description {
   width: 50%;
+  border-bottom: 1px solid #70afce;
 }
 
 
