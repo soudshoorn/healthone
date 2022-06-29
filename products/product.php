@@ -74,7 +74,6 @@
 
                                                 <label>Hoeveel sterren geef je?</label>
                                                 <select name='stars' required>
-                                                    <option value='0'>0</option>
                                                     <option value='1'>1</option>
                                                     <option value='2'>2</option>
                                                     <option value='3'>3</option>
@@ -142,25 +141,20 @@
                         
                                     $reviewsresult = $reviews->fetchAll(PDO::FETCH_ASSOC);
 
-                                    if(!$reviewsresult) {
-                                        echo "
-                                        <div class='noreviews__wrapper'>
-                                            <h3 class='noreviews__wrapper--title'>Er zijn nog geen reviews geplaatst.</h3>
-                                            <a href='/healthone/products/product.php?id=".$_GET['id']."&reviews&createreview' class='btn manageproducts__create--btn'>Nieuw  <i class='fas fa-plus'></i></a>
-                                        </div>
-                                        ";
-                                    } else if (!isset($_SESSION['user'])) {
+                                    if(!isset($_SESSION['user'])) {
                                         echo "
                                         <div class='noreviews__wrapper'>
                                             <h3 class='noreviews__wrapper--title'>Je moet ingelogd zijn om een review te plaatsen.</h3>
                                             <a href='/healthone/login/login.php' class='btn'>Login</a>
                                         </div>
-                                        <table>
-                                        <tr class='reviews__top'>
-                                            <th>Naam</th>
-                                            <th>Sterren</th>
-                                            <th>Mening</th>
-                                        </tr>
+                                        ";
+
+                                    } else if (!$reviewresult) {
+                                        echo "
+                                        <div class='noreviews__wrapper'>
+                                            <h3 class='noreviews__wrapper--title'>Er zijn nog geen reviews geplaatst.</h3>
+                                            <a href='/healthone/products/product.php?id=".$_GET['id']."&reviews&createreview' class='btn manageproducts__create--btn'>Nieuw  <i class='fas fa-plus'></i></a>
+                                        </div>
                                         ";
                                     } else {
                                         echo "

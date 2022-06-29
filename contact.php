@@ -13,6 +13,7 @@
         <section class="contact">
             <div class="container">
                 <div class="row">
+                    <h3 class="contact__title">Kom in contact!</h3>
                     <div class="contact__wrapper">
                         <div class="contact__map">
                             <iframe width="600" height="400" class="contact__map--iframe" src="https://maps.google.com/maps?q=Anthony%20fokkersingel&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
@@ -41,7 +42,12 @@
                                     <input type="text" name="city" class="contact__form--input" placeholder="Den Haag" required>
                                 </div>
                             </div>
-                            
+
+                            <div class="contact__form--terms">
+                                <input type="checkbox" name="terms" class="contact__form--input terms__checkbox">
+                                <p>Ik ga akkoord met de <a class="contact__terms--anchor" href="/healthone">Algemene Voorwaarde</a>.</p>
+                            </div>
+
                             <div class="contact__form--submit">
                                 <input type="submit" class="contact__form--submit btn" value="Verzenden">
                             </div>

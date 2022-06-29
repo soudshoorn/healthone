@@ -20,7 +20,8 @@
                     $result = $login->fetchAll(PDO::FETCH_ASSOC);
 
                     foreach ($result as &$data) {
-                        if($password == $data['password']) {
+                        $passcheck = password_verify($password, $data['password']);
+                        if($passcheck) {
 
                             $_SESSION['user'] = $data['id'];
                             $_SESSION['username'] = $data['name'];

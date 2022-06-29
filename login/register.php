@@ -14,6 +14,8 @@
                 $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
                 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
                 $passwordrepeat = filter_input(INPUT_POST, "passwordrepeat", FILTER_SANITIZE_STRING);
+
+                $hashpass = password_hash($password, PASSWORD_BCRYPT);
                                 
                 if ($password == $passwordrepeat) {
                     try{
@@ -21,19 +23,22 @@
 
                     $query->bindParam("name", $name);
                     $query->bindParam("email", $email);
-                    $query->bindParam("password", $password);
+                    $query->bindParam("password", $hashpass);
 
                     if($query->execute()) {
-                        header("Location: /healthone/login/login.php");
+                        $_SESSION['success'] = "Account is succesvol aangemaakt, je kan nu inloggen.";  
+                        header("Location: ./login.php");
                     } else {
-                        $_SESSION['error'] = "Er is een fout opgetreden, probeer het later opnieuw.";                        
+                        $_SESSION['error'] = "Er is een fout opgetreden, probeer het later opnieuw.";  
+                        header("Location: ./register.php");              
                     }
 
                     }catch(PDOException $e){
                         echo "error! " . $e->getMessage();
                     }
                 } else {
-                    $_SESSION['error'] = "Wachtwoorden komen niet overeen.";                        
+                    $_SESSION['error'] = "Wachtwoorden komen niet overeen.";  
+                    header("Location: ./register.php");              
                 }
             }
         ?>

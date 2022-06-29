@@ -20,7 +20,7 @@
                                     Officiis quod nisi velit? Natus voluptas non nisi! Nisi, alias! Voluptates, totam? Qui!
                                 </p>
                                 <div class="header__button">
-                                    <button class="btn">Registreer direct!</button>
+                                    <a href="./contact.php" class="btn">Registreer direct!</a>
                                 </div>
                             </div>
                             <figure class="header__banner">

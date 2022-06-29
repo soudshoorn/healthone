@@ -177,6 +177,28 @@ nav {
 
 */
 
+.contact__title {
+  font-size: 36px;
+  color: #3A7B99;
+  padding: 12px 0;
+}
+
+.contact__terms--anchor {
+  color: #3A7B99;
+  text-decoration: underline;
+}
+
+.contact__form--terms {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.terms__checkbox {
+  height: 16px;
+  width: 16px;
+}
+
 .contact {
   height: 70%;
   display: flex;
@@ -210,9 +232,9 @@ nav {
 
 .contact__form--input {
   font-size: 16px;
-  border-radius: 8px;
   padding: 6px 8px;
-  border: 1px solid #242424;
+  border: none;
+  border-bottom: 1px solid #3A7B99;
   margin-bottom: 4px;
 }
 
@@ -695,6 +717,7 @@ footer {
 }
 
 .noreviews__wrapper {
+  padding: 12px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -714,6 +737,7 @@ footer {
 }
 
 .product__description--para {
+  padding: 8px 0;
   font-size: 18px;
   color: #00112c;
 }

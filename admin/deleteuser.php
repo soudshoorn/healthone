@@ -2,6 +2,10 @@
     session_start();
     include_once('../dbConnection.php');
 
+    if(!isset($_SESSION['admin'])) {
+        header("Location: ../index.php");
+    }
+
     try{    
         $id = $_GET['id'];
         $delete = $db->prepare("DELETE FROM users WHERE id = :id");
