@@ -16,29 +16,39 @@
                 $passwordrepeat = filter_input(INPUT_POST, "passwordrepeat", FILTER_SANITIZE_STRING);
 
                 $hashpass = password_hash($password, PASSWORD_BCRYPT);
-                                
-                if ($password == $passwordrepeat) {
-                    try{
-                    $query = $db->prepare("INSERT INTO users(name, email, password) VALUES(:name, :email, :password)");
+                $passcheck = password_verify($passwordrepeat, $hashpass);
 
-                    $query->bindParam("name", $name);
-                    $query->bindParam("email", $email);
-                    $query->bindParam("password", $hashpass);
+                $users = $db->prepare("SELECT * FROM users WHERE email = :email");
+                $users->bindParam("email", $email);
+                $users->execute();
+                $usersresult = $users->fetch(PDO::FETCH_ASSOC);
 
-                    if($query->execute()) {
-                        $_SESSION['success'] = "Account is succesvol aangemaakt, je kan nu inloggen.";  
-                        header("Location: ./login.php");
+                if(!$usersresult) {
+                    if ($passcheck) {
+                        try{
+                            $query = $db->prepare("INSERT INTO users(name, email, password) VALUES(:name, :email, :password)");
+
+                            $query->bindParam("name", $name);
+                            $query->bindParam("email", $email);
+                            $query->bindParam("password", $hashpass);
+
+                            if($query->execute()) {
+                                $_SESSION['success'] = "Account is succesvol aangemaakt, je kan nu inloggen.";  
+                                header("Location: ./login.php");
+                            } else {
+                                $_SESSION['error'] = "Er is een fout opgetreden, probeer het later opnieuw.";  
+                                header("Location: ./register.php");              
+                            }
+                        }catch(PDOException $e){
+                            echo "error! " . $e->getMessage();
+                        }
                     } else {
-                        $_SESSION['error'] = "Er is een fout opgetreden, probeer het later opnieuw.";  
+                        $_SESSION['error'] = "Wachtwoorden komen niet overeen.";  
                         header("Location: ./register.php");              
                     }
-
-                    }catch(PDOException $e){
-                        echo "error! " . $e->getMessage();
-                    }
                 } else {
-                    $_SESSION['error'] = "Wachtwoorden komen niet overeen.";  
-                    header("Location: ./register.php");              
+                    $_SESSION['error'] = "Het opgegeven email adress is al in gebruik.";  
+                    header("Location: ./register.php");    
                 }
             }
         ?>

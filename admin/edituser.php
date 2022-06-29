@@ -29,16 +29,14 @@
                         $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
                         $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
                         $role = filter_input(INPUT_POST, "role", FILTER_SANITIZE_STRING);
-                        $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
-                        $passwordrepeat = filter_input(INPUT_POST, "passwordrepeat", FILTER_SANITIZE_STRING);
+                        
 
-                        if (($data['email'] !== $email) && ($password == $passwordrepeat)) {
-                            $userupdate = $db->prepare("UPDATE users SET name = :name, email = :email, password = :password, role = :role WHERE id = :id");
+                        if (($data['email'] !== $email)) {
+                            $userupdate = $db->prepare("UPDATE users SET name = :name, email = :email, role = :role WHERE id = :id");
 
                             $userupdate->bindParam("name", $name);
                             $userupdate->bindParam("email", $email);
                             $userupdate->bindParam("role", $role);
-                            $userupdate->bindParam("password", $password);
                             $userupdate->bindParam("id", $_GET['id']);
 
                             if($userupdate->execute()) {
@@ -48,9 +46,6 @@
                                 $_SESSION['error'] = "Er is een fout opgetreden tijdens het opslaan van de nieuwe gegevens.";
                                 header("Location: ./edituser.php?id=".$_GET['id']."");
                             }
-                        } else if ($password !== $passwordrepeat) {
-                            $_SESSION['error'] = "De wachtwoorden komen niet overeen.";
-                            header("Location: ./edituser.php?id=".$_GET['id']."");
                         } else if ($data['email'] == $email) {
                             $_SESSION['error'] = "Dit email adres is al in gebruik.";
                             header("Location: ./edituser.php?id=".$_GET['id']."");

@@ -141,15 +141,27 @@
                         
                                     $reviewsresult = $reviews->fetchAll(PDO::FETCH_ASSOC);
 
-                                    if(!isset($_SESSION['user'])) {
+                                    if((!isset($_SESSION['user'])) && (!$reviewsresult)) {
                                         echo "
                                         <div class='noreviews__wrapper'>
                                             <h3 class='noreviews__wrapper--title'>Je moet ingelogd zijn om een review te plaatsen.</h3>
                                             <a href='/healthone/login/login.php' class='btn'>Login</a>
                                         </div>
                                         ";
-
-                                    } else if (!$reviewresult) {
+                                    } else if((!isset($_SESSION['user'])) && ($reviewsresult)) {
+                                        echo "
+                                        <div class='noreviews__wrapper'>
+                                            <h3 class='noreviews__wrapper--title'>Je moet ingelogd zijn om een review te plaatsen.</h3>
+                                            <a href='/healthone/login/login.php' class='btn'>Login</a>
+                                        </div>
+                                        <table>
+                                        <tr class='reviews__top'>
+                                            <th>Naam</th>
+                                            <th>Sterren</th>
+                                            <th>Mening</th>
+                                        </tr>
+                                        ";
+                                    } else if (!$reviewsresult) {
                                         echo "
                                         <div class='noreviews__wrapper'>
                                             <h3 class='noreviews__wrapper--title'>Er zijn nog geen reviews geplaatst.</h3>
